@@ -17,7 +17,6 @@ interface Fund {
   standalone: true,
   imports: [CommonModule, MatTableModule, MatButtonModule, MatCardModule, MatSnackBarModule],
   templateUrl: './fund-list.component.html',
-  styleUrls: ['./fund-list.component.scss'],
 })
 export class FundListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'category', 'minAmount', 'actions'];
