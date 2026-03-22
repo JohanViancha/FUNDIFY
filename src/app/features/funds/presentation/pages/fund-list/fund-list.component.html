@@ -15,7 +15,7 @@
     <ng-container matColumnDef="minimumAmount">
       <th mat-header-cell *matHeaderCellDef>Monto mínimo</th>
       <td mat-cell *matCellDef="let fund">
-        {{ fund.minimumAmount | currency }}
+        {{ fund.minimumAmount | currency:'COP':'symbol':'1.0-0':'es-CO' }}
       </td>
     </ng-container>
 
