@@ -1,26 +1,21 @@
 <mat-card>
   <mat-card-title>Fondos disponibles</mat-card-title>
-  <mat-card-subtitle>
-    Saldo disponible: {{ userBalance() | currency: 'COP' : 'symbol' }}
-  </mat-card-subtitle>
 
-  <table mat-table [dataSource]="funds()" class="mat-elevation-z2">
-
-      <ng-container matColumnDef="id">
+  <table mat-table [dataSource]="funds()">
+    <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>ID</th>
       <td mat-cell *matCellDef="let fund">{{ fund.id }}</td>
     </ng-container>
-
 
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Nombre</th>
       <td mat-cell *matCellDef="let fund">{{ fund.name }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="minAmount">
+    <ng-container matColumnDef="minimumAmount">
       <th mat-header-cell *matHeaderCellDef>Monto mínimo</th>
       <td mat-cell *matCellDef="let fund">
-        {{ fund.minAmount | currency: 'COP' : 'symbol' }}
+        {{ fund.minimumAmount | currency }}
       </td>
     </ng-container>
 
@@ -32,7 +27,7 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Acción</th>
       <td mat-cell *matCellDef="let fund">
-        <button mat-raised-button color="primary" (click)="subscribe(fund)">Suscribirse</button>
+        <button mat-raised-button color="primary">Suscribirse</button>
       </td>
     </ng-container>
 
