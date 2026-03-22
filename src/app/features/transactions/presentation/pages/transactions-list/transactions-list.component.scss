@@ -1,0 +1,13 @@
+.card {
+  & .primary-chip {
+    background-color: var(--mat-sys-primary-fixed);
+    color: var(--mat-sys-on-primary-fixed);
+    border: 1px solid var(--mat-sys-primary);
+  }
+
+  & .error-chip {
+    background-color: var(--mat-sys-error-container);
+    color: var(--mat-sys-on-error-container);
+    border: 1px solid var(--mat-sys-error);
+  }
+}
