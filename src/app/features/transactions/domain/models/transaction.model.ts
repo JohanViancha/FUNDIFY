@@ -1,9 +1,9 @@
-export type TypeTransaction = 'SUBSCRIPTION' | 'CANCELLATION';
+export type TransactionType = 'SUBSCRIPTION' | 'CANCELLATION';
 
 export interface Transaction {
   id: string;
   fundId: string;
-  type: TypeTransaction;
+  type: TransactionType;
   amount: number;
   date: Date;
 }
