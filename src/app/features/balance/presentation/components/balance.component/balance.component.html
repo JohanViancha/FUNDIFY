@@ -1,0 +1,11 @@
+<div class="balance">
+  <mat-card-subtitle>
+    <b>Saldo:</b>
+    {{ availableBalance()?.available | currency: 'COP' : 'symbol' : '1.0-0' : 'es-CO' }}
+  </mat-card-subtitle>
+
+  <button mat-button matButton="filled" (click)="openDepositModal()">
+    <mat-icon>attach_money</mat-icon>
+    Depositar
+  </button>
+</div>

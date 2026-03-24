@@ -1,0 +1,9 @@
+.balance {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  mat-card-subtitle {
+    color: var(--mat-sys-on-primary-container);
+  }
+}
