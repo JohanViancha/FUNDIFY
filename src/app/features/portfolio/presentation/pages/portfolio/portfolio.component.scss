@@ -1,0 +1,30 @@
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.summary-card {
+  text-align: center;
+}
+
+
+.charts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.chart-card {
+  padding: 16px;
+}
+
+.chart-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  margin: auto;
+}
+

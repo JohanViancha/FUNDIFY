@@ -1,0 +1,52 @@
+<div class="dashboard-container">
+  <h2>Mi portafolio</h2>
+  <p>Resumen de tus fondos y transacciones</p>
+
+  <div class="summary-cards">
+    <mat-card class="summary-card">
+      <mat-card-content>
+        <h3>Total invertido</h3>
+        <h2>{{ totalInvested() | currency: 'COP' : 'symbol' : '1.0-0' : 'es-CO' }}</h2>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="summary-card">
+      <mat-card-content>
+        <h3>Fondos activos</h3>
+        <h2>{{ activeFundsCount() }}</h2>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="summary-card">
+      <mat-card-content>
+        <h3>Transacciones</h3>
+        <h2>{{ totalTransactions() }}</h2>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="charts-container">
+    <mat-card class="chart-card">
+      <mat-card-header>
+        <mat-card-title> Distribución por fondo </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="chart-wrapper">
+          <canvas baseChart [data]="pieChartData()" [options]="pieChartOptions" type="pie">
+          </canvas>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="chart-card">
+      <mat-card-header>
+        <mat-card-title> Transacciones por tipo </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <canvas baseChart [data]="barChartData()" [options]="barChartOptions" type="bar"> </canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
