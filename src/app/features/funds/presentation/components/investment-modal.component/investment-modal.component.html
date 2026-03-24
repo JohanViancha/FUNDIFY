@@ -1,0 +1,48 @@
+<div class="modal-content">
+  <h2 mat-dialog-title>Invertir en el fondo</h2>
+
+  <mat-card class="fund-header">
+    <mat-card-header>
+      <mat-card-title>{{ data.fund.name || 'Fondo seleccionado' }}</mat-card-title>
+      <mat-card-subtitle>Categoria: {{ data.fund.category }}</mat-card-subtitle>
+      <mat-card-subtitle
+        >Monto minimo:
+        {{
+          data.fund.minimumAmount | currency: 'COP' : 'symbol' : '1.0-0' : 'es-CO'
+        }}</mat-card-subtitle
+      >
+    </mat-card-header>
+  </mat-card>
+  <mat-dialog-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+      <mat-form-field appearance="outline">
+        <mat-label>Monto a invertir (COP)</mat-label>
+        <input type="text" matInput formControlName="amount" required appCurrency />
+        @if (form.get('amount')?.hasError('min')) {
+          <mat-error>
+            El monto mínimo es
+            {{
+              form.get('amount')?.getError('min')?.min
+                | currency: 'COP' : 'symbol' : '1.0-0' : 'es-CO'
+            }}
+          </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo de notificación</mat-label>
+        <mat-select formControlName="notificationType" required>
+          <mat-option value="SMS">SMS</mat-option>
+          <mat-option value="EMAIL">Email</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="close()">Cancelar</button>
+    <button mat-raised-button matButton="filled" [disabled]="form.invalid" (click)="onSubmit()">
+      Invertir
+    </button>
+  </mat-dialog-actions>
+</div>

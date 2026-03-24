@@ -1,0 +1,25 @@
+.modal-content {
+  min-width: 300px;
+  & .form {
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.fund-header {
+  margin: 0 20px;
+  padding-bottom:  1rem;
+  background: var(--mat-sys-primary-container);
+
+  & mat-card-title {
+    color: var(--mat-sys-on-primary-container);
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  & mat-card-subtitle {
+    color: var(--mat-sys-on-primary-container);
+  }
+}
