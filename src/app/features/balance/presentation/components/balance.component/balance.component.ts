@@ -1,17 +1,17 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { BalanceStore } from '../../stores/balance.store';
 import { CommonModule, CurrencyPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
-import { DepositModalComponent } from '../deposit.component/deposit.modal.component';
-import { DepositEvent } from '../deposit.component/models/deposit-event';
-import { UpdateBalanceUseCase } from '../../../application/use-cases/update-balance.use-case';
-import { NotifyService } from '../../../../../shared/services/notify/notify.service';
-import { AppError } from '../../../../../shared/domain/errors/app-error';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbarComponent } from '../../../../../shared/components/snackbar/snackbar.component';
+import { AppError } from '../../../../../shared/domain/errors/app-error';
+import { NotifyService } from '../../../../../shared/services/notify/notify.service';
+import { UpdateBalanceUseCase } from '../../../application/use-cases/update-balance.use-case';
+import { BalanceStore } from '../../stores/balance.store';
+import { DepositModalComponent } from '../deposit.component/deposit.modal.component';
+import { DepositEvent } from '../deposit.component/models/deposit-event';
 
 @Component({
   selector: 'app-balance',

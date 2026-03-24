@@ -130,7 +130,6 @@ describe('BalanceComponent', () => {
     );
   });
 
-  // 🧪 5. flujo error
   it('should notify error when update fails', () => {
     const mockResult = {
       amount: 50000,
