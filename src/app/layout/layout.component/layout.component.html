@@ -1,0 +1,39 @@
+<mat-sidenav-container class="sidenav-container" autosize>
+  <mat-sidenav-content>
+    <mat-toolbar class="toolbar">
+      <span class="logo">Fundify</span>
+
+      <div class="menu">
+        <a mat-button routerLink="/funds" routerLinkActive="active">
+          <mat-icon>account_balance</mat-icon>
+          Fondos
+        </a>
+        <a mat-button routerLink="/transactions" routerLinkActive="active">
+          <mat-icon>swap_horiz</mat-icon>
+          Transacciones
+        </a>
+
+          <a mat-button routerLink="/portfolio" routerLinkActive="active">
+          <mat-icon>bar_chart_4_bars</mat-icon>
+          Portafolio
+        </a>
+      </div>
+
+      <span class="spacer"></span>
+      <app-balance />
+    </mat-toolbar>
+
+    <div class="content">
+      @if (!balanceStore.hasMadeFirstTransaction()) {
+        <mat-card appearance="outlined" class="card-welcome">
+          <mat-icon>priority_high</mat-icon>
+          <p>
+            Como nuevo usuario, te obsequiamos <strong>$500.000</strong> para que comiences a invertir.
+          </p>
+        </mat-card>
+      }
+
+      <router-outlet />
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

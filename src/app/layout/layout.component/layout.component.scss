@@ -1,0 +1,66 @@
+.sidenav-container {
+  height: 100vh;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0.8rem 1rem;
+  background-color: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+  height: auto;
+  gap: 0.5rem;
+  .logo {
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-right: 16px;
+    text-transform: uppercase;
+  }
+
+  .menu {
+    display: flex;
+    gap: 8px;
+    margin-right: auto;
+
+    a {
+      color: currentColor;
+    }
+
+    a.active {
+      background-color: var(--mat-sys-primary-fixed-dim);
+      color: var(--mat-sys-on-primary-fixed);
+      font-weight: 600;
+    }
+  }
+
+  .menu-toggle {
+    margin-right: 8px;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+}
+
+.content {
+  padding: 2rem;
+  height: calc(100vh - 64px);
+
+  .card-welcome {
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 16px;
+    padding: 0 1rem;
+    border: 2px solid var(--mat-sys-primary);
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 16px;
+  }
+}
