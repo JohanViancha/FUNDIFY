@@ -1,9 +1,9 @@
-import { TypeTransaction } from "../../domain/models/transaction.model";
+import { TransactionType } from "../../domain/models/transaction.model";
 
 export interface TransactionDto {
   id: string;
   fundName: string;
-  type: TypeTransaction;
+  type: TransactionType;
   amount: number;
   date: Date;
 }
