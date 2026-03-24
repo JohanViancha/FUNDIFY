@@ -1,0 +1,35 @@
+ .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 1rem;
+
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--mat-sys-outline);
+      border-radius: 4px;
+    }
+  }
+
+  .responsive-table {
+    min-width: 600px;
+    width: 100%;
+
+    table-layout: fixed;
+
+    th,
+    td {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      padding: 12px 8px;
+    }
+  }

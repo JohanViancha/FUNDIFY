@@ -19,6 +19,7 @@ import { InvestmentData } from '../../components/investment-modal.component/inve
   selector: 'app-fund-list',
   imports: [CommonModule, MatTableModule, MatButtonModule, MatCardModule, MatSnackBarModule],
   templateUrl: './fund-list.component.html',
+  styleUrl: './fund-list.component.scss'
 })
 export class FundListComponent implements OnInit {
   private getFundsUseCase = inject(GetFundsUseCase);
