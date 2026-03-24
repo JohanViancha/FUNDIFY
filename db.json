@@ -4,9 +4,9 @@
       "id": "1",
       "name": "FPV_BTG_PACTUAL_RECAUDADORA",
       "minimumAmount": 75000,
-      "category": "FPV_BTG_PACTUAL_RECAUDADORA",
+      "category": "Fondo de Pensiones Voluntarias",
       "isSubscribed": false,
-      "amountInvested": 75000
+      "amountInvested": 0
     },
     {
       "id": "2",
@@ -44,8 +44,8 @@
   "transactions": [],
   "balance": {
     "available": 500000,
-    "totalInvested": 0,
-    "lastUpdated": "2026-03-23T19:13:45.588Z"
+    "hasMadeFirstTransaction": false,
+    "lastUpdated": "2026-03-24T05:29:22.443Z"
   },
   "$schema": "./node_modules/json-server/schema.json"
 }
