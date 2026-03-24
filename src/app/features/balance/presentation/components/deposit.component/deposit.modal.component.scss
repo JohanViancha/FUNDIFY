@@ -1,0 +1,26 @@
+.deposit-modal {
+  .content {
+    .deposit-form {
+      .full-width {
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+.fund-header {
+  padding-bottom:  1rem;
+  margin-bottom: 2rem;
+  background: var(--mat-sys-primary-container);
+
+  & mat-card-title {
+    color: var(--mat-sys-on-primary-container);
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  & mat-card-subtitle {
+    color: var(--mat-sys-on-primary-container);
+  }
+}
