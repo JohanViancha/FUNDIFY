@@ -5,4 +5,6 @@ export interface Fund {
   name: string;
   category: CategoryFund;
   minimumAmount: number;
+  isSubscribed: boolean;
+  amountInvested: number;
 }
