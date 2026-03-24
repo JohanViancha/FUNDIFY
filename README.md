@@ -1,59 +1,150 @@
 # Fundify
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.2.
+Plataforma de inversión en fondos con arquitectura hexagonal, Angular 21 + JSON-Server.
 
-## Development server
+## Características
+- Gestión de fondos (suscripción, inversión)
+- Balance dinámico con validaciones
+- Historial transacciones con filtros/paginación
+- Portafolio visual (gráficos torta)
+- Responsive design (Material + Mobile-first)
+- Estado reactivo (NgRx Signals)
+- UI moderna (Angular Material 21)
 
-To start a local development server, run:
+## Tecnologías
+- Frontend: Angular 21 • TypeScript 5.9 • RxJS 7.8
+- Estado: @ngrx/signals 21
+- UI: Angular Material 21
+- Charts: ng2-charts 10 + Chart.js 4.5
+- Backend: JSON-Server (Mock API)
+- Estilo: SCSS + Prettier
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+## Inicio rápido
+1. Clonar y Preparar
 
 ```bash
-ng build
+git clone https://github.com/JohanViancha/FUNDIFY.git
+cd fundify
+npm install
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+2. Backend JSON-Server
+```bash
+# Instalar depedencia
+npm install json-server
 
-## Running unit tests
+# Usar
+Crea archivo el db.json en la raíz
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+# Iniciar JSON Server
+npx json-server db.json
+```
+
+3. Frontend Angular
+```bash
+# Iniciar
+npm start
+```
+
+## Estructura Backend (db.json)
+```json
+{
+  "balance": {
+    "available": 500000,
+    "hasMadeFirstTransaction": false,
+    "lastUpdated": "2026-03-24T05:29:22.443Z"
+  },
+  "transactions": [],
+  "funds": [
+    {
+      "id": "1",
+      "name": "FPV_BTG_PACTUAL_RECAUDADORA",
+      "minimumAmount": 75000,
+      "category": "Fondo de Pensiones Voluntarias",
+      "isSubscribed": false,
+      "amountInvested": 0
+    },
+    {
+      "id": "2",
+      "name": "FPV_BTG_PACTUAL_ECOPETROL",
+      "minimumAmount": 125000,
+      "category": "Fondo de Pensiones Voluntarias",
+      "isSubscribed": false,
+      "amountInvested": 0
+    },
+    {
+      "id": "3",
+      "name": "DEUDAPRIVADA",
+      "minimumAmount": 50000,
+      "category": "Fondo de Inversión Colectiva",
+      "isSubscribed": false,
+      "amountInvested": 0
+    },
+    {
+      "id": "4",
+      "name": "FDO-ACCIONES",
+      "minimumAmount": 250000,
+      "category": "Fondo de Inversión Colectiva",
+      "isSubscribed": false,
+      "amountInvested": 0
+    },
+    {
+      "id": "5",
+      "name": " FPV_BTG_PACTUAL_DINAMICA",
+      "minimumAmount": 100000,
+      "category": "Fondo de Pensiones Voluntarias",
+      "isSubscribed": false,
+      "amountInvested": 0
+    }
+  ]
+}
+```
+
+## Arquitectura
+```mermaid
+src/app/
+├── layout/            # Layouts
+├── shared/            # Reutilizables
+│   ├── components/    # Componentes
+│   └── domain/        # Modelos
+│   └── directive/  
+│   └── services/  
+└── features/          # Fondos, Balance, Portfolio
+    └── funds/
+        ├── domain/         # Modelos
+        ├── application/    # Casos de uso        
+        ├── presentation/   # Componentes Paginas
+        └── infrastructure/ # Repositorios
+
+```
+
+## Páginas
+```mermaid
+                | Ruta          | Descripción                       |
+                | ------------- | --------------------------------- |
+                | /funds        | Lista fondos + inversión          |
+| /transactions | Historial de transcciones con filtros/paginación  |
+| /portfolio    | Gráfico de distribución fondos y transaccuibes    |
+```
+
+
+## Pruebas unitarias
 
 ```bash
-ng test
+# Correr pruebas unitarias
+npm run test 
+
+
+## Generar cobertura de pruebas unitarias
+npm run test:coverage 
+
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+## Construir aplicación
 
 ```bash
-ng e2e
+npm run build 
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Licencia
+MIT License - Usa libremente.
