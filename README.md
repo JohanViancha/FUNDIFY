@@ -1,4 +1,3 @@
-# Fundify
 
 Plataforma de inversión en fondos con arquitectura hexagonal, Angular 21 + JSON-Server.
 
@@ -101,8 +100,7 @@ npm start
 ```
 
 ## Arquitectura
-```mermaid
-src/app/
+```plaintextsrc/app/
 ├── layout/            # Layouts
 ├── shared/            # Reutilizables
 │   ├── components/    # Componentes
@@ -119,7 +117,7 @@ src/app/
 ```
 
 ## Páginas
-```mermaid
+```plaintext
                 | Ruta          | Descripción                       |
                 | ------------- | --------------------------------- |
                 | /funds        | Lista fondos + inversión          |
@@ -140,11 +138,22 @@ npm run test:coverage
 
 ```
 
+<img width="1903" height="986" alt="image" src="https://github.com/user-attachments/assets/862ccc36-a0e2-4fb2-8089-84d6fffc302e" />
+
 ## Construir aplicación
 
 ```bash
 npm run build 
 ```
+
+## Resultado del proyecto
+<img width="1897" height="903" alt="image" src="https://github.com/user-attachments/assets/8a8fae34-faa8-4fd1-980a-2fce663537e8" />
+<img width="1888" height="909" alt="image" src="https://github.com/user-attachments/assets/9d06eb37-d574-4096-a2c5-0ef631a01d65" />
+<img width="1899" height="905" alt="image" src="https://github.com/user-attachments/assets/00ef9914-fdfa-483c-83a0-bdeab1924580" />
+<img width="1892" height="908" alt="image" src="https://github.com/user-attachments/assets/810c86a3-dd6d-43fc-9e24-58d2ef46d2c9" />
+
+
+
 
 ## Licencia
 MIT License - Usa libremente.
