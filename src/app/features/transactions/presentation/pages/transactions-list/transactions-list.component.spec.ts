@@ -1,13 +1,13 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
 import { registerLocaleData } from '@angular/common';
 import localeEsCo from '@angular/common/locales/es-CO';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
-import { TransactionsListComponent } from './transactions-list.component';
-import { GetTransactionsUseCase } from '../../../application/use-cases/get-transactions.use-case';
 import { TransactionDto } from '../../../application/dtos/transaction.dto';
+import { GetTransactionsUseCase } from '../../../application/use-cases/get-transactions.use-case';
+import { TransactionsListComponent } from './transactions-list.component';
 registerLocaleData(localeEsCo);
 
 describe('TransactionsListComponent', () => {

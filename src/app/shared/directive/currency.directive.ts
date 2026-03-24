@@ -1,4 +1,3 @@
-// shared/directives/currency.directive.ts
 import { Directive, ElementRef, HostListener, forwardRef, Output, EventEmitter, inject } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
