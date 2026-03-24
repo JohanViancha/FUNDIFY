@@ -1,0 +1,12 @@
+<div class="modal-content">
+   <h2 mat-dialog-title [innerHTML]="data.title"></h2>
+  <mat-dialog-content [innerHTML]="data.content"></mat-dialog-content>
+  <mat-dialog-actions align="end">
+    @if (data.showCloseButton !== false) {
+      <button mat-button (click)="close()"> {{ data.buttonCancelText || 'Cancelar' }}</button>
+    }
+    <button mat-raised-button matButton="filled" [mat-dialog-close]="true">
+      {{ data.buttonConfirmText || 'Entendido' }}
+    </button>
+  </mat-dialog-actions>
+</div>
