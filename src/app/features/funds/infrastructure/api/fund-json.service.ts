@@ -12,10 +12,17 @@ export class FundJsonService implements FundRepository {
   private http = inject(HttpClient);
   private apiUrl = environment.apiUrl;
 
+   /**
+   * Obtiene lista completa de fondos desde JSON Server
+   */
   getFunds() {
     return this.http.get<Fund[]>(`${this.apiUrl}/funds`);
   }
 
+  /**
+   * Busca fondo por ID (cliente-side filtering).
+   * Retorna null si no existe.
+   */
   getFundById(id: string): Observable<Fund | null> {
     return this.getFunds().pipe(
       map((funds) => funds.find((fund) => fund.id === id)),
@@ -23,6 +30,11 @@ export class FundJsonService implements FundRepository {
     );
   }
 
+  /**
+   * Actualiza estado suscripción de fondo:
+   * - PATCH isSubscribed + amountInvested
+   * - Refetch lista completa para retorno consistente
+   */
   updateSubscription(
     fundId: string,
     isSubscribed: boolean,

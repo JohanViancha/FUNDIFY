@@ -15,11 +15,19 @@ export class CancelFundUseCase {
   private balanceReposotory = inject(BALANCE_REPOSITORY_TOKEN);
   private transactionRepository = inject(TRANSACTION_REPOSITORY_TOKEN);
 
+  /**
+   * Ejecuta cancelación de suscripción a fondo con validaciones.
+   *
+   * @param fundId ID del fondo a cancelar
+   * @returns Observable con resultados o AppError
+   */
+
   execute(fundId: string): Observable<{
-    transaction: Transaction;
-    balance: Balance;
-    subscribedFund: Fund;
+    transaction: Transaction; // Nueva transacción CANCELLATION creada
+    balance: Balance; // Balance actualizado (disponible ↑)
+    subscribedFund: Fund; // Fondo marcado como no suscrito
   }> {
+    // Buscar fondo por ID
     return this.fundRepository.getFundById(fundId).pipe(
       switchMap((fund) => {
         if (!fund) {
@@ -31,7 +39,7 @@ export class CancelFundUseCase {
               ),
           );
         }
-
+        // Validación: fondo tiene suscripción activa
         if (!fund.isSubscribed) {
           return throwError(
             () =>
@@ -40,14 +48,16 @@ export class CancelFundUseCase {
         }
 
         return forkJoin({
+          // Crea registro CANCELLATION con monto original
           transaction: this.transactionRepository.create({
             id: Date.now().toString(),
             fundId: fund.id,
             type: 'CANCELLATION',
-            amount: fund.amountInvested,
+            amount: fund.amountInvested, // Monto originalmente invertido
             date: new Date(),
           }),
           balance: this.balanceReposotory.updateBalance(fund.amountInvested, 'DEPOSIT'),
+          // Desuscribir fondo (isSubscribed: false, amountInvested: 0)
           subscribedFund: this.fundRepository.updateSubscription(fundId, false, 0),
         });
       }),

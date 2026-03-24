@@ -7,6 +7,7 @@ import { BaseChartDirective } from 'ng2-charts';
 import { GetFundsUseCase } from '../../../../funds/application/use-cases/get-funds.use-case';
 import { GetTransactionsUseCase } from '../../../../transactions/application/use-cases/get-transactions.use-case';
 
+// Registro global de componentes Chart.js
 Chart.register(...registerables);
 
 @Component({
@@ -17,11 +18,18 @@ Chart.register(...registerables);
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PortfolioComponent {
+  // Inyección de use cases (arquitectura hexagonal: presentación → aplicación)
   private getFundsUseCase = inject(GetFundsUseCase);
   private getTransactionUseCase = inject(GetTransactionsUseCase);
 
+  // Conversión de observables a signals reactivos
   private fundsSignal = toSignal(this.getFundsUseCase.execute(), { initialValue: [] });
   private transactionsSignal = toSignal(this.getTransactionUseCase.execute(), { initialValue: [] });
+
+  /**
+   * Datos para gráfico de torta: distribución de inversión por fondo.
+   * Solo fondos activos
+   */
 
   pieChartData = computed<ChartData<'pie'>>(() => {
     const funds = this.fundsSignal();
@@ -35,11 +43,19 @@ export class PortfolioComponent {
     };
   });
 
+  /**
+   * Computed: fondos activos (suscritos).
+   * Base para totales y filtros.
+   */
   activeFunds = computed(() => {
     const funds = this.fundsSignal();
     return funds.filter((fund) => fund.isSubscribed);
   });
 
+   /**
+   * Total invertido: suma amountInvested de fondos activos.
+   * Reactivo: se actualiza si cambian fondos o montos.
+   */
   totalInvested = computed(() => {
     return this.activeFunds().reduce((total, fund) => total + fund.amountInvested, 0);
   });
@@ -57,6 +73,9 @@ export class PortfolioComponent {
     return funds.length;
   });
 
+  /**
+   * Datos gráfico barras: conteo suscripciones vs cancelaciones.
+   */
   barChartData = computed(() => {
     const transactions = this.transactionsSignal();
     const subscriptions = transactions.filter((t) => t.type === 'SUBSCRIPTION').length;

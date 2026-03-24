@@ -29,7 +29,7 @@ export class FundListComponent implements OnInit {
   private _snackBar = inject(MatSnackBar);
 
   public balanceStore = inject(BalanceStore);
-
+  // Configuración tabla Material
   displayedColumns: string[] = ['id', 'name', 'category', 'minimumAmount', 'actions'];
   funds = signal<Fund[]>([]);
 
@@ -37,10 +37,16 @@ export class FundListComponent implements OnInit {
     this.loadFunds();
   }
 
+  /**
+   * Carga fondos iniciales y refresca post-operaciones
+   */
   loadFunds() {
     this.getFundsUseCase.execute().subscribe((funds) => this.funds.set(funds));
   }
 
+  /**
+   * Suscribe a fondo vía modal + use case transaccional
+   */
   subscribe(fundId: string, result: InvestmentData) {
     this.subscribeToFundUseCase.execute(fundId, result.amount).subscribe({
       next: ({ balance, subscribedFund }) => {
@@ -73,6 +79,9 @@ export class FundListComponent implements OnInit {
     });
   }
 
+  /**
+   * Abre modal inversión con datos del fondo
+   */
   openInvestmentModal(fund: Fund) {
     const dialogRef = this.dialog.open(InvestmentModalComponent, {
       data: { fund },
@@ -85,6 +94,9 @@ export class FundListComponent implements OnInit {
     });
   }
 
+  /**
+   * Confirmación para cancelación
+   */
   confirmCancel(fund: Fund) {
     this.notifyService
       .open({
@@ -109,6 +121,9 @@ export class FundListComponent implements OnInit {
       });
   }
 
+  /**
+   * SnackBar de éxito genérico (5s)
+   */
   openSnackBar(message: string) {
     this._snackBar.openFromComponent(SnackbarComponent, {
       duration: 5 * 1000,

@@ -26,23 +26,30 @@ export class BalanceComponent {
   private notifyService = inject(NotifyService);
   private updateBalanceUseCase = inject(UpdateBalanceUseCase);
   private _snackBar = inject(MatSnackBar);
-  private currencyPipe = inject(CurrencyPipe)
+  private currencyPipe = inject(CurrencyPipe);
   balanceStore = inject(BalanceStore);
 
   availableBalance = this.balanceStore.balance;
 
+  /**
+   * Formatea montos en formato COP colombiano ($ 1.234.567)
+   */
   formatAmount(amount: number): string {
     return (
       this.currencyPipe.transform(
         amount,
-        'COP',
-        'symbol',
-        '1.0-0',
-        'es-CO',
+        'COP', // Moneda colombiana
+        'symbol', // $ símbolo
+        '1.0-0', // Sin decimales
+        'es-CO', // Localización Colombia
       ) || '$ 0'
     );
   }
 
+  /**
+   * Abre modal depósito y procesa resultado.
+   * Flujo: Modal → UpdateBalanceUseCase → Store → UI auto-update + SnackBar
+   */
   openDepositModal() {
     const dialogRef = this.dialog.open(DepositModalComponent, {
       width: '480px',
@@ -56,7 +63,9 @@ export class BalanceComponent {
       if (result) {
         this.updateBalanceUseCase.execute(result.amount, 'DEPOSIT').subscribe({
           next: (balance) => {
+            // Actualiza store
             this.balanceStore.setBalance(balance);
+            // Notificación éxito (SnackBar temporal)
             this._snackBar.openFromComponent(SnackbarComponent, {
               duration: 5 * 1000,
               data: {
@@ -65,6 +74,7 @@ export class BalanceComponent {
             });
           },
           error: (error: AppError) =>
+            // Notificación error (modal persistente)
             this.notifyService.open({
               title: error.title,
               content: error.message,

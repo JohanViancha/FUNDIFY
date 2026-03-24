@@ -15,17 +15,26 @@ export class SubscribeToFundUseCase {
   private balanceReposotory = inject(BALANCE_REPOSITORY_TOKEN);
   private transactionRepository = inject(TRANSACTION_REPOSITORY_TOKEN);
 
+  /**
+   * Ejecuta suscripción a fondo con validaciones transaccionales.
+   *
+   * @param fundId ID del fondo
+   * @param amount Monto a invertir (COP)
+   * @returns Observable con resultados o AppError
+   */
+
   execute(
     fundId: string,
     amount: number,
   ): Observable<{
-    transaction: Transaction;
-    balance: Balance;
-    subscribedFund: Fund;
+    transaction: Transaction; // Nueva transacción creada
+    balance: Balance; // Balance actualizado (disponible ↓)
+    subscribedFund: Fund; // Fondo marcado como suscrito
   }> {
     return this.fundRepository.getFundById(fundId).pipe(
       switchMap((fund) => {
         if (!fund) {
+          // Validación: fondo existe
           return throwError(
             () =>
               new AppError(
@@ -48,6 +57,8 @@ export class SubscribeToFundUseCase {
                   ),
               );
             }
+
+             // Saldo disponible ≥ monto
             if (balance.available < amount) {
               return throwError(
                 () =>
@@ -59,6 +70,7 @@ export class SubscribeToFundUseCase {
             }
 
             return forkJoin({
+               // Crea registro SUBSCRIPTION
               transaction: this.transactionRepository.create({
                 id: Date.now().toString(),
                 fundId: fund.id,
