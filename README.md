@@ -1,3 +1,4 @@
+# FUNDIFY
 
 Plataforma de inversión en fondos con arquitectura hexagonal, Angular 21 + JSON-Server.
 
@@ -151,6 +152,7 @@ npm run build
 <img width="1888" height="909" alt="image" src="https://github.com/user-attachments/assets/9d06eb37-d574-4096-a2c5-0ef631a01d65" />
 <img width="1899" height="905" alt="image" src="https://github.com/user-attachments/assets/00ef9914-fdfa-483c-83a0-bdeab1924580" />
 <img width="1892" height="908" alt="image" src="https://github.com/user-attachments/assets/810c86a3-dd6d-43fc-9e24-58d2ef46d2c9" />
+
 
 
 
